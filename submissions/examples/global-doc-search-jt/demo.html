@@ -43,7 +43,6 @@
     </div>
 
     <script>
-      // Mock data representing standard documentation routes
       const docItems = [
         {
           name: "ease-fade-in",
@@ -116,7 +115,6 @@
         overlay.setAttribute("aria-hidden", "true");
       }
 
-      // Render matching items grouped by category
       function renderResults(items) {
         filteredItems = items;
         if (items.length === 0) {
@@ -147,25 +145,21 @@
         resultsContainer.innerHTML = html;
       }
 
-      // Live Filtering Input Event
       input.addEventListener("input", (e) => {
         const query = e.target.value.toLowerCase().trim();
         const matches = docItems.filter((item) =>
           item.name.toLowerCase().includes(query)
         );
-        activeIndex = 0; // reset index on selection change
+        activeIndex = 0;
         renderResults(matches);
       });
 
-      // Event Triggers
       trigger.addEventListener("click", openSearch);
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeSearch();
       });
 
-      // Keyboard Event Matrix
       window.addEventListener("keydown", (e) => {
-        // Open/Close toggle
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
           e.preventDefault();
           overlay.classList.contains("open") ? closeSearch() : openSearch();
